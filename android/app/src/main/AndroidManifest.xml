@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.course_infoapp">
+    package="com.example.flutterfirebase">
    <application
-        android:label="course_infoapp"
+        android:label="flutterfirebase"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
