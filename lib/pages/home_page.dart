@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutterfirebase/pages/add_student_page.dart';
-import 'package:flutterfirebase/pages/list_student_page.dart';
+import 'package:CTSE/pages/add_student_page.dart';
+import 'package:CTSE/pages/list_student_page.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);

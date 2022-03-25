@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterfirebase/common/theme_helper.dart';
+import 'package:CTSE/common/theme_helper.dart';
+import 'widgets/header_widget.dart';
 
 class UpdateStudentPage extends StatefulWidget {
   final String id;
@@ -12,7 +13,7 @@ class UpdateStudentPage extends StatefulWidget {
 
 class _UpdateStudentPageState extends State<UpdateStudentPage> {
   final _formKey = GlobalKey<FormState>();
-
+final double _headerHeight = 250;
   // Updaing Student
   CollectionReference students =
       FirebaseFirestore.instance.collection('students');
@@ -57,8 +58,9 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
               return Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-                child: ListView(
-                  children: [
+                child: ListView(                 
+                  children: [    
+              
                     Container(
                       margin: const EdgeInsets.symmetric(vertical: 10.0),
                       child: TextFormField(
@@ -159,7 +161,7 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
                           ),
                         ],
                       ),
-                    )
+                    )               
                   ],
                 ),
               );

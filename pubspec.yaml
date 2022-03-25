@@ -1,4 +1,4 @@
-name: flutterfirebase
+name: CTSE
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -67,6 +67,7 @@ flutter:
   assets:
     - images/books.jpg
     - images/logo.jpg
+    - images/girl.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
