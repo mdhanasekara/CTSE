@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'list_student_page.dart';
 import 'widgets/header_widget.dart';
+//import 'package:fluttertoast/fluttertoast.dart';
 
 class AddStudentPage extends StatefulWidget {
   AddStudentPage({Key? key}) : super(key: key);
@@ -285,6 +286,7 @@ class _AddStudentPageState extends State<AddStudentPage> {
                             ),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
+                                //Fluttertoast.showToast(msg: "Login Successful")
                                 Navigator.of(context).pushAndRemoveUntil(
                                     MaterialPageRoute(
                                         builder: (context) =>

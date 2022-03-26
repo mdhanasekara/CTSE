@@ -1,4 +1,4 @@
-# course_infoapp
+# flutterfirebase
 
 A new Flutter project.
 
