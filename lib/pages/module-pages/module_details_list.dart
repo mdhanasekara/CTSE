@@ -39,8 +39,7 @@ class _ModuleDetailsListState extends State<ModuleDetailsList> {
           return Scaffold(
             backgroundColor: color.AppColor.homePageBackground,
             body: Container(
-              padding:
-                  const EdgeInsets.only(top: 20, left: 0, right: 0),
+              padding: const EdgeInsets.only(top: 20, left: 0, right: 0),
               // margin: EdgeInsets.symmetric(vertical: ),
               child: Stack(alignment: Alignment.center, children: <Widget>[
                 ClipPath(
@@ -67,44 +66,45 @@ class _ModuleDetailsListState extends State<ModuleDetailsList> {
                     width: size.width * 0.7,
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      top: 50, left: 0, right: 0, bottom: 0),
-                  // margin: EdgeInsets.symmetric(vertical: 10),
-                  child: Column(
-                    children: [
-                      Positioned(
-                        top: 0,
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Icon(
-                              Icons.arrow_back_ios,
-                              size: 20,
-                              color: color.AppColor.homePageIcons,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "Module Details",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: color.AppColor.homePageTitle,
-                                  fontWeight: FontWeight.w700),
-                            ),
-                          ],
+                SingleChildScrollView(
+                  child: Container(
+                    padding: const EdgeInsets.only(
+                        top: 50, left: 0, right: 0, bottom: 0),
+                    // margin: EdgeInsets.symmetric(vertical: 10),
+                    child: Column(
+                      children: [
+                        Positioned(
+                          top: 0,
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Icon(
+                                Icons.arrow_back_ios,
+                                size: 20,
+                                color: color.AppColor.homePageIcons,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                "Module Details",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: color.AppColor.homePageTitle,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 35,
-                      ),
-                        // SingleChildScrollView( 
+                        SizedBox(
+                          height: 35,
+                        ),
+                        // SingleChildScrollView(
 
-                      for (var i = 0; i < storedocs.length; i++) ...[
-                           Positioned(
+                        for (var i = 0; i < storedocs.length; i++) ...[
+                          Positioned(
                             child: Container(
                                 margin: EdgeInsets.all(5),
                                 padding:
@@ -145,9 +145,10 @@ class _ModuleDetailsListState extends State<ModuleDetailsList> {
                                   ],
                                 )),
                           ),
-                      ],
+                        ],
                         // ],),)
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ]),
