@@ -2,7 +2,7 @@ import 'package:CTSE/pages/module-pages/custom_input_box.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:CTSE/colors.dart' as color;
-import 'package:CTSE/pages/module-pages/module_details_list.dart';
+import 'package:CTSE/pages/module-pages/notices_list.dart';
 
 class AddModuleDetails extends StatefulWidget {
   const AddModuleDetails({Key? key}) : super(key: key);
@@ -196,7 +196,7 @@ class _AddModuleDetailsState extends State<AddModuleDetails> {
                       // if (_formKey.currentState!.validate()) {
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
-                              builder: (context) => ModuleDetailsList()),
+                              builder: (context) => NoticesList()),
                           (Route<dynamic> route) => false);
                       setState(() {
                         title = titleController.text;

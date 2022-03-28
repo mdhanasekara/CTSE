@@ -2,14 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:CTSE/colors.dart' as color;
 
-class ModuleDetailsList extends StatefulWidget {
-  const ModuleDetailsList({Key? key}) : super(key: key);
+class NoticesList extends StatefulWidget {
+  const NoticesList({Key? key}) : super(key: key);
 
   @override
-  State<ModuleDetailsList> createState() => _ModuleDetailsListState();
+  State<NoticesList> createState() => _NoticesListState();
 }
 
-class _ModuleDetailsListState extends State<ModuleDetailsList> {
+class _NoticesListState extends State<NoticesList> {
   final Stream<QuerySnapshot> noticesStream =
       FirebaseFirestore.instance.collection('notices').snapshots();
 
@@ -40,7 +40,6 @@ class _ModuleDetailsListState extends State<ModuleDetailsList> {
             backgroundColor: color.AppColor.homePageBackground,
             body: Container(
               padding: const EdgeInsets.only(top: 20, left: 0, right: 0),
-              // margin: EdgeInsets.symmetric(vertical: ),
               child: Stack(alignment: Alignment.center, children: <Widget>[
                 ClipPath(
                   clipper: OuterClippedPart(),
@@ -60,7 +59,6 @@ class _ModuleDetailsListState extends State<ModuleDetailsList> {
                 ),
                 Positioned(
                   bottom: 0,
-                  // right: 0,
                   child: Image.asset(
                     'images/listModuleDetails.png',
                     width: size.width * 0.7,
@@ -69,8 +67,7 @@ class _ModuleDetailsListState extends State<ModuleDetailsList> {
                 SingleChildScrollView(
                   child: Container(
                     padding: const EdgeInsets.only(
-                        top: 50, left: 0, right: 0, bottom: 0),
-                    // margin: EdgeInsets.symmetric(vertical: 10),
+                        top: 50, left: 10, right: 10, bottom: 0),
                     child: Column(
                       children: [
                         Positioned(
@@ -89,7 +86,7 @@ class _ModuleDetailsListState extends State<ModuleDetailsList> {
                                 width: 10,
                               ),
                               Text(
-                                "Module Details",
+                                "Notices",
                                 style: TextStyle(
                                     fontSize: 20,
                                     color: color.AppColor.homePageTitle,
@@ -112,7 +109,9 @@ class _ModuleDetailsListState extends State<ModuleDetailsList> {
                                 height: 100,
                                 width: size.width,
                                 decoration: BoxDecoration(
-                                  color: Colors.grey[400],
+                                  // color: Colors.grey[400],
+                                  color:
+                                      color.AppColor.secondPageTopIconColor.withOpacity(0.6),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Column(
@@ -146,7 +145,6 @@ class _ModuleDetailsListState extends State<ModuleDetailsList> {
                                 )),
                           ),
                         ],
-                        // ],),)
                       ],
                     ),
                   ),
