@@ -41,57 +41,58 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         title: Text(
           "Profile Page",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          //style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.white,
-        elevation: 0.5,
-        iconTheme: IconThemeData(color: Colors.white),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: <Color>[
-                Theme.of(context).primaryColor,
-                Theme.of(context).accentColor,
-              ])),
-        ),
-        actions: [
-          Container(
-            margin: EdgeInsets.only(
-              top: 16,
-              right: 16,
-            ),
-            child: Stack(
-              children: <Widget>[
-                Icon(Icons.notifications),
-                Positioned(
-                  right: 0,
-                  child: Container(
-                    padding: EdgeInsets.all(1),
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    constraints: BoxConstraints(
-                      minWidth: 12,
-                      minHeight: 12,
-                    ),
-                    child: Text(
-                      '5',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 8,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          )
-        ],
       ),
+      backgroundColor: Color.fromARGB(255, 161, 193, 241),
+      //   elevation: 0.5,
+      //   iconTheme: IconThemeData(color: Colors.white),
+      //   flexibleSpace: Container(
+      //     decoration: BoxDecoration(
+      //         gradient: LinearGradient(
+      //             begin: Alignment.topLeft,
+      //             end: Alignment.bottomRight,
+      //             colors: <Color>[
+      //           Theme.of(context).primaryColor,
+      //           Theme.of(context).accentColor,
+      //         ])),
+      //   ),
+      //   actions: [
+      //     Container(
+      //       margin: EdgeInsets.only(
+      //         top: 16,
+      //         right: 16,
+      //       ),
+      //       child: Stack(
+      //         children: <Widget>[
+      //           Icon(Icons.notifications),
+      //           Positioned(
+      //             right: 0,
+      //             child: Container(
+      //               padding: EdgeInsets.all(1),
+      //               decoration: BoxDecoration(
+      //                 color: Colors.red,
+      //                 borderRadius: BorderRadius.circular(6),
+      //               ),
+      //               constraints: BoxConstraints(
+      //                 minWidth: 12,
+      //                 minHeight: 12,
+      //               ),
+      //               child: Text(
+      //                 '5',
+      //                 style: TextStyle(
+      //                   color: Colors.white,
+      //                   fontSize: 8,
+      //                 ),
+      //                 textAlign: TextAlign.center,
+      //               ),
+      //             ),
+      //           )
+      //         ],
+      //       ),
+      //     )
+      //   ],
+      // ),
       drawer: Drawer(
         child: Container(
           decoration: BoxDecoration(
@@ -124,7 +125,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Container(
                   alignment: Alignment.bottomLeft,
                   child: Text(
-                    "FlutterTutorial.Net",
+                    "Course App",
                     style: TextStyle(
                         fontSize: 25,
                         color: Colors.white,
@@ -180,7 +181,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   );
                 },
               ),
-              // Divider(color: Theme.of(context).primaryColor, height: 1,),
+              Divider(
+                color: Theme.of(context).primaryColor,
+                height: 1,
+              ),
               // ListTile(
               //   leading: Icon(Icons.password_rounded, size: _drawerIconSize,color: Theme.of(context).accentColor,),
               //   title: Text('Forgot Password Page',style: TextStyle(fontSize: _drawerFontSize,color: Theme.of(context).accentColor),),
@@ -188,7 +192,10 @@ class _ProfilePageState extends State<ProfilePage> {
               //     Navigator.push( context, MaterialPageRoute(builder: (context) => ForgotPasswordPage()),);
               //   },
               // ),
-              // Divider(color: Theme.of(context).primaryColor, height: 1,),
+              Divider(
+                color: Theme.of(context).primaryColor,
+                height: 1,
+              ),
               // ListTile(
               //   leading: Icon(Icons.verified_user_sharp, size: _drawerIconSize,color: Theme.of(context).accentColor,),
               //   title: Text('Verification Page',style: TextStyle(fontSize: _drawerFontSize,color: Theme.of(context).accentColor),),
@@ -223,31 +230,42 @@ class _ProfilePageState extends State<ProfilePage> {
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            Container(
-              height: 100,
-              child: HeaderWidget(100, false, Icons.house_rounded),
-            ),
+            // Container(
+            //   height: 100,
+            //   child: HeaderWidget(100, false, Icons.house_rounded),
+            // ),
             Container(
               alignment: Alignment.center,
               margin: EdgeInsets.fromLTRB(25, 10, 25, 10),
               padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: Column(
                 children: [
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      border: Border.all(width: 5, color: Colors.white),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 20,
-                          offset: const Offset(5, 5),
-                        ),
-                      ],
+                  // Container(
+                  //   padding: EdgeInsets.all(10),
+                  //   decoration: BoxDecoration(
+                  //     borderRadius: BorderRadius.circular(100),
+                  //     border: Border.all(width: 5, color: Colors.white),
+                  //     color: Colors.white,
+                  //     boxShadow: [
+                  //       BoxShadow(
+                  //         color: Colors.black12,
+                  //         blurRadius: 20,
+                  //         offset: const Offset(5, 5),
+                  //       ),
+                  //     ],
+                  //   ),
+                  //   //child: Icon(Icons.person, size: 80, color: Colors.grey.shade300,),
+                  // ),
+                  Ink.image(
+                    image: NetworkImage(
+                      'https://media.gettyimages.com/photos/illustration-of-happy-smiling-businessman-in-suit-with-laptop-sitting-picture-id1248415323?b=1&k=20&m=1248415323&s=170667a&w=0&h=xEgyA_jfBpP6S4DobMUR_SE1LtwbMyuiQz0nSvM1zWg=',
                     ),
-                    //child: Icon(Icons.person, size: 80, color: Colors.grey.shade300,),
+                    //colorFilter: ColorFilters.greyscale,
+                    child: InkWell(
+                      onTap: () {},
+                    ),
+                    height: 200,
+                    fit: BoxFit.cover,
                   ),
                   SizedBox(
                     height: 20,
@@ -257,7 +275,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   Container(
                     padding: EdgeInsets.all(10),
@@ -267,15 +285,15 @@ class _ProfilePageState extends State<ProfilePage> {
                           padding:
                               const EdgeInsets.only(left: 8.0, bottom: 4.0),
                           alignment: Alignment.topLeft,
-                          child: Text(
-                            "User Information",
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
+                          // child: Text(
+                          //   "User Information",
+                          //   style: TextStyle(
+                          //     color: Colors.black87,
+                          //     fontWeight: FontWeight.w500,
+                          //     fontSize: 16,
+                          //   ),
+                          //   textAlign: TextAlign.left,
+                          // ),
                         ),
                         Card(
                           child: Container(
@@ -289,10 +307,17 @@ class _ProfilePageState extends State<ProfilePage> {
                                       color: Colors.grey,
                                       tiles: [
                                         ListTile(
+                                          leading: Icon(Icons.person),
+                                          title: Text("Occupation"),
+                                          subtitle:
+                                              Text("${loggedInUser.type}"),
+                                        ),
+                                        ListTile(
                                           leading: Icon(Icons.email),
                                           title: Text("Email"),
                                           subtitle:
                                               Text("${loggedInUser.email}"),
+                                              
                                         ),
                                         ListTile(
                                           leading: Icon(Icons.phone),

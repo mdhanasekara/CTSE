@@ -4,9 +4,8 @@ import 'package:CTSE/common/theme_helper.dart';
 import 'package:CTSE/pages/widgets/header_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'list_student_page.dart';
+import 'home_page.dart';
 import 'widgets/header_widget.dart';
-//import 'package:fluttertoast/fluttertoast.dart';
 
 class AddStudentPage extends StatefulWidget {
   AddStudentPage({Key? key}) : super(key: key);
@@ -18,13 +17,14 @@ class AddStudentPage extends StatefulWidget {
 class _AddStudentPageState extends State<AddStudentPage> {
   final _formKey = GlobalKey<FormState>();
   final double _headerHeight = 250;
-  final status = ['Student', 'Lecturer'];
+  String selectedValue = 'Please choose the user type';
 
   var fname = "";
   var lname = "";
   var email = "";
   var mobile = "";
   var password = "";
+  var status = "";
   bool checkedValue = false;
   bool checkboxValue = false;
   // Create a text controller and use it to retrieve the current value
@@ -34,6 +34,7 @@ class _AddStudentPageState extends State<AddStudentPage> {
   final emailController = TextEditingController();
   final mobileController = TextEditingController();
   final passwordController = TextEditingController();
+  final statusController = TextEditingController();
 
   @override
   void dispose() {
@@ -43,6 +44,7 @@ class _AddStudentPageState extends State<AddStudentPage> {
     emailController.dispose();
     mobileController.dispose();
     passwordController.dispose();
+    statusController.dispose();
     super.dispose();
   }
 
@@ -52,6 +54,7 @@ class _AddStudentPageState extends State<AddStudentPage> {
     emailController.clear();
     mobileController.clear();
     passwordController.clear();
+    statusController.clear();
   }
 
   // Adding Student
@@ -65,18 +68,42 @@ class _AddStudentPageState extends State<AddStudentPage> {
           'lname': lname,
           'email': email,
           'mobile': mobile,
-          'password': password
+          'password': password,
+          //'status': status,
+          'type': selectedValue,
         })
         .then((value) => print('User Added'))
         .catchError((error) => print('Failed to Add user: $error'));
   }
 
+  Widget buildImageCard() => Card(
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Ink.image(
+              image: NetworkImage(
+                'http://blog.travelpayouts.com/en/wp-content/uploads/sites/2/2019/08/content-creation.jpg',
+              ),
+              child: InkWell(
+                onTap: () {},
+              ),
+              height: 160,
+              fit: BoxFit.cover,
+            ),
+          ],
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Course Registration"),
-      ),
+      // appBar: AppBar(
+      //   title: Text("Course Registration"),
+      // ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Stack(
@@ -89,48 +116,17 @@ class _AddStudentPageState extends State<AddStudentPage> {
             Container(
               margin: EdgeInsets.fromLTRB(25, 50, 25, 10),
               padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-              alignment: Alignment.center,
+              alignment: Alignment.topLeft,
               child: Column(
                 children: [
+                  buildImageCard(),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Form(
                     key: _formKey,
                     child: Column(
                       children: [
-                        // GestureDetector(
-                        //   child: Stack(
-                        //     children: [
-                        //       Container(
-                        //         padding: EdgeInsets.all(10),
-                        //         decoration: BoxDecoration(
-                        //           borderRadius: BorderRadius.circular(100),
-                        //           border: Border.all(
-                        //               width: 5, color: Colors.white),
-                        //           color: Colors.white,
-                        //           boxShadow: [
-                        //             BoxShadow(
-                        //               color: Colors.black12,
-                        //               blurRadius: 20,
-                        //               offset: const Offset(5, 5),
-                        //             ),
-                        //           ],
-                        //         ),
-                        //         child: Icon(
-                        //           Icons.person,
-                        //           color: Colors.grey.shade300,
-                        //           size: 80.0,
-                        //         ),
-                        //       ),
-                        //       Container(
-                        //         padding: EdgeInsets.fromLTRB(80, 80, 0, 0),
-                        //         child: Icon(
-                        //           Icons.add_circle,
-                        //           color: Colors.grey.shade700,
-                        //           size: 25.0,
-                        //         ),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
                         Container(
                           child: TextFormField(
                               controller: fnameController,
@@ -146,7 +142,7 @@ class _AddStudentPageState extends State<AddStudentPage> {
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
                         const SizedBox(
-                          height: 30,
+                          height: 10,
                         ),
                         Container(
                           child: TextFormField(
@@ -162,7 +158,7 @@ class _AddStudentPageState extends State<AddStudentPage> {
                               }),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 20.0),
+                        SizedBox(height: 10.0),
                         Container(
                           child: TextFormField(
                             controller: emailController,
@@ -181,7 +177,7 @@ class _AddStudentPageState extends State<AddStudentPage> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 20.0),
+                        SizedBox(height: 10.0),
                         Container(
                           child: TextFormField(
                             controller: mobileController,
@@ -199,7 +195,7 @@ class _AddStudentPageState extends State<AddStudentPage> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 20.0),
+                        SizedBox(height: 10.0),
                         Container(
                           child: TextFormField(
                             controller: passwordController,
@@ -216,57 +212,45 @@ class _AddStudentPageState extends State<AddStudentPage> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        // SizedBox(height: 15.0),
-                        //  Container(
-                        //   child: DropdownButton<String>(
-                        //   items: status.map(buildMenu).toList()
-                        //   ),
-                        //   decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                        // ),
-                        SizedBox(height: 15.0),
-                        // FormField<bool>(
-                        //   builder: (state) {
-                        //     return Column(
-                        //       children: <Widget>[
-                        //         Row(
-                        //           children: <Widget>[
-                        //             Checkbox(
-                        //                 value: checkboxValue,
-                        //                 onChanged: (value) {
-                        //                   setState(() {
-                        //                     checkboxValue = value!;
-                        //                     state.didChange(value);
-                        //                   });
-                        //                 }),
-                        //             Text(
-                        //               "I accept all terms and conditions.",
-                        //               style: TextStyle(color: Colors.grey),
-                        //             ),
-                        //           ],
-                        //         ),
-                        //         Container(
-                        //           alignment: Alignment.centerLeft,
-                        //           child: Text(
-                        //             state.errorText ?? '',
-                        //             textAlign: TextAlign.left,
-                        //             style: TextStyle(
-                        //               color: Theme.of(context).errorColor,
-                        //               fontSize: 12,
-                        //             ),
-                        //           ),
-                        //         )
-                        //       ],
-                        //     );
-                        //   },
-                        //   validator: (value) {
-                        //     if (!checkboxValue) {
-                        //       return 'You need to accept terms and conditions';
-                        //     } else {
-                        //       return null;
-                        //     }
-                        //   },
-                        // ),
-                        SizedBox(height: 20.0),
+                        SizedBox(height: 10.0),
+                        Container(
+                          child: Column(children: [
+                            DropdownButtonFormField<String>(
+                              hint: Text('Please choose the user type'),
+                              value: selectedValue,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  selectedValue = newValue!;
+                                });
+                              },
+                              items: <String>[
+                                'Please choose the user type',
+                                'student',
+                                'lecturer'
+                              ].map((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(70),
+                                  borderSide: BorderSide(
+                                      //color: color.AppColor.gradientFirst,
+                                      ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(70),
+                                  borderSide: BorderSide(
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ]),
+                        ),
+                        SizedBox(height: 10.0),
                         Container(
                           decoration:
                               ThemeHelper().buttonBoxDecoration(context),
@@ -286,11 +270,9 @@ class _AddStudentPageState extends State<AddStudentPage> {
                             ),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                //Fluttertoast.showToast(msg: "Login Successful")
                                 Navigator.of(context).pushAndRemoveUntil(
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            ListStudentPage()),
+                                        builder: (context) => HomePage()),
                                     (Route<dynamic> route) => false);
                                 setState(() {
                                   fname = fnameController.text;
@@ -305,12 +287,12 @@ class _AddStudentPageState extends State<AddStudentPage> {
                             },
                           ),
                         ),
-                        SizedBox(height: 30.0),
+                        SizedBox(height: 10.0),
                         Text(
                           "Or create account using social media",
                           style: TextStyle(color: Colors.grey),
                         ),
-                        SizedBox(height: 25.0),
+                        SizedBox(height: 10.0),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
