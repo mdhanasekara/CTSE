@@ -12,7 +12,6 @@ class AddModuleDetails extends StatefulWidget {
 }
 
 class _AddModuleDetailsState extends State<AddModuleDetails> {
-  final _formKey = GlobalKey<FormState>();
   String selectedValue = 'Please choose the detail type';
 
   var title = '';
@@ -193,7 +192,6 @@ class _AddModuleDetailsState extends State<AddModuleDetails> {
                           ),
                         )),
                     onTap: () {
-                      // if (_formKey.currentState!.validate()) {
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
                               builder: (context) => NoticesList()),
@@ -204,10 +202,8 @@ class _AddModuleDetailsState extends State<AddModuleDetails> {
                         addModuleDetails();
                         clearText();
                       });
-                      // }
                     },
                   ),
-                  // ),
                 ]),
               ),
             ),

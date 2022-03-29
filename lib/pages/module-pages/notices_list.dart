@@ -109,9 +109,9 @@ class _NoticesListState extends State<NoticesList> {
                                 height: 100,
                                 width: size.width,
                                 decoration: BoxDecoration(
-                                  // color: Colors.grey[400],
-                                  color:
-                                      color.AppColor.secondPageTopIconColor.withOpacity(0.6),
+                                  color: Color.fromARGB(255, 119, 169, 209).withOpacity(0.6),
+                                  // color:
+                                  //     color.AppColor.secondPageTopIconColor.withOpacity(0.6),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Column(
