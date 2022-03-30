@@ -1,3 +1,4 @@
+import 'package:CTSE/pages/widgets/user_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:CTSE/colors.dart' as color;
@@ -27,19 +28,21 @@ class _ViewModuleOutlineState extends State<ViewModuleOutline> {
         .doc(id)
         .delete()
         .then((value) => print('Module Outline Detail Deleted'))
-        .catchError((error) => print('Failed to Delete Module Outline Detail: $error'));
+        .catchError(
+            (error) => print('Failed to Delete Module Outline Detail: $error'));
   }
 
   // Update
   Future<void> updateOutline(oldTitle, oldDes, id, title, description) {
-    if(title == '') title = oldTitle;
-    if(description == '') title = oldDes;
+    if (title == '') title = oldTitle;
+    if (description == '') title = oldDes;
 
     return moduleOutlineDetails
         .doc(id)
         .update({'title': title, 'description': description})
         .then((value) => print("Module Outline Details Updated"))
-        .catchError((error) => print("Failed to update Module Outline Details: $error"));
+        .catchError((error) =>
+            print("Failed to update Module Outline Details: $error"));
   }
 
   @override
@@ -66,8 +69,10 @@ class _ViewModuleOutlineState extends State<ViewModuleOutline> {
           }).toList();
 
           return Scaffold(
+            drawer: UserNavigationDrawer(),
             backgroundColor: color.AppColor.homePageBackground,
-            body: Container(
+            body:Builder(builder:(context) =>  
+            Container(
               padding: const EdgeInsets.only(top: 20, left: 0, right: 0),
               child: Stack(alignment: Alignment.center, children: <Widget>[
                 ClipPath(
@@ -94,248 +99,250 @@ class _ViewModuleOutlineState extends State<ViewModuleOutline> {
                   ),
                 ),
                 // SingleChildScrollView(
-                  // child: 
-                  Container(
-                    padding: const EdgeInsets.only(
-                        top: 50, left: 10, right: 10, bottom: 0),
-                    child: Column(
-                      children: [
-                        Positioned(
-                          top: 0,
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Icon(
-                                Icons.arrow_back_ios,
-                                size: 20,
-                                color: color.AppColor.homePageIcons,
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Module Outline Details",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: color.AppColor.homePageTitle,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                            ],
-                          ),
+                // child:
+                Container(
+                  padding: const EdgeInsets.only(
+                      top: 50, left: 10, right: 10, bottom: 0),
+                  child: Column(
+                    children: [
+                      Positioned(
+                        top: 0,
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 10,
+                            ),
+                            IconButton(
+                              onPressed: () => {
+                                Scaffold.of(context).openDrawer()
+                              },
+                              icon: Icon(Icons.arrow_back_ios,
+                                  color: color.AppColor.homePageIcons,
+                                  size: 20),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "Module Outline Details",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: color.AppColor.homePageTitle,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          height: 35,
-                        ),
-                        // SingleChildScrollView(
+                      ),
+                      SizedBox(
+                        height: 35,
+                      ),
+                      // SingleChildScrollView(
 
-                        for (var i = 0; i < storedocs.length; i++) ...[
-                          Positioned(
-                            child: Container(
-                                margin: EdgeInsets.all(5),
-                                padding:
-                                    const EdgeInsets.only(left: 10, right: 5),
-                                height: 120,
-                                width: size.width,
-                                decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 119, 169, 209)
-                                      .withOpacity(0.6),
-                                  // color: color.AppColor.secondPageTopIconColor
-                                  // .withOpacity(0.6),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Row(children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 10),
-                                        child: Text(
-                                          storedocs[i]['title'],
-                                          style: TextStyle(
-                                              fontSize: 17,
-                                              color:
-                                                  color.AppColor.gradientFirst,
-                                              fontWeight: FontWeight.bold),
-                                        ),
+                      for (var i = 0; i < storedocs.length; i++) ...[
+                        Positioned(
+                          child: Container(
+                              margin: EdgeInsets.all(5),
+                              padding:
+                                  const EdgeInsets.only(left: 10, right: 5),
+                              height: 120,
+                              width: size.width,
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 119, 169, 209)
+                                    .withOpacity(0.6),
+                                // color: color.AppColor.secondPageTopIconColor
+                                // .withOpacity(0.6),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Column(
+                                children: [
+                                  Row(children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 10),
+                                      child: Text(
+                                        storedocs[i]['title'],
+                                        style: TextStyle(
+                                            fontSize: 17,
+                                            color: color.AppColor.gradientFirst,
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                    ]),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                              storedocs[i]['description'],
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.w600)),
-                                        ),
-                                      ],
                                     ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Row(
-                                      children: [
-                                        SizedBox(
-                                          width: 80,
-                                        ),
-                                        Tooltip(
-                                          message: 'Edit',
-                                          child: IconButton(
-                                            onPressed: () => {
-                                              showDialog(
-                                                  context: context,
-                                                  builder: (context) {
-                                                    return Dialog(
-                                                        shape: RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        40)),
-                                                        elevation: 16,
-                                                        child: Container(
-                                                            height: 380.0,
-                                                            width: 360.0,
-                                                            child: Column(
-                                                                children: [
-                                                                  SizedBox(
-                                                                      height:
-                                                                          20),
-                                                                  Center(
-                                                                    child: Text(
-                                                                      "Edit Module Outline",
-                                                                      style: TextStyle(
-                                                                          fontSize:
-                                                                              24,
-                                                                          color: Colors
-                                                                              .blue,
-                                                                          fontWeight:
-                                                                              FontWeight.bold),
-                                                                    ),
+                                  ]),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(storedocs[i]['description'],
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w600)),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 80,
+                                      ),
+                                      Tooltip(
+                                        message: 'Edit',
+                                        child: IconButton(
+                                          onPressed: () => {
+                                            showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return Dialog(
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          40)),
+                                                      elevation: 16,
+                                                      child: Container(
+                                                          height: 380.0,
+                                                          width: 360.0,
+                                                          child: Column(
+                                                              children: [
+                                                                SizedBox(
+                                                                    height: 20),
+                                                                Center(
+                                                                  child: Text(
+                                                                    "Edit Module Outline",
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            24,
+                                                                        color: Colors
+                                                                            .blue,
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
                                                                   ),
-                                                                  SizedBox(
-                                                                    height: 20,
-                                                                  ),
-                                                                  Container(
-                                                                    padding: const EdgeInsets
-                                                                            .only(
-                                                                        left:
-                                                                            10,
-                                                                        right:
-                                                                            10),
-                                                                    child: TextFormField(
-                                                                        style: TextStyle(fontSize: 17, color: color.AppColor.formTextColor),
-                                                                        initialValue: storedocs[i]['title'],
-                                                                        autofocus: false,
-                                                                        onChanged: (value) => title = value,
-                                                                        decoration: ThemeHelper().textInputDecoration('Title', 'Enter Title'),
-                                                                        validator: (value) {
-                                                                          if (value == null ||
-                                                                              value.isEmpty) {
-                                                                            return 'Please Enter Title';
-                                                                          }
-                                                                          return null;
-                                                                        }),
-                                                                    decoration:
-                                                                        ThemeHelper()
-                                                                            .inputBoxDecorationShaddow(),
-                                                                  ),
-                                                                  SizedBox(
-                                                                    height: 20,
-                                                                  ),
-                                                                  Container(
-                                                                    padding: const EdgeInsets
-                                                                            .only(
-                                                                        left:
-                                                                            10,
-                                                                        right:
-                                                                            10),
-                                                                    child: TextFormField(
-                                                                        style: TextStyle(fontSize: 17, color: color.AppColor.formTextColor),
-                                                                        initialValue: storedocs[i]['description'],
-                                                                        autofocus: false,
-                                                                        maxLines: 4,
-                                                                        onChanged: (value) => description = value,
-                                                                        decoration: ThemeHelper().textInputDecoration('Description', 'Enter Description'),
-                                                                        validator: (value) {
-                                                                          if (value == null ||
-                                                                              value.isEmpty) {
-                                                                            return 'Please Enter Description';
-                                                                          }
-                                                                          return null;
-                                                                        }),
-                                                                    decoration:
-                                                                        ThemeHelper()
-                                                                            .inputBoxDecorationShaddow(),
-                                                                  ),
-                                                                  SizedBox(
-                                                                    height: 20,
-                                                                  ),
-                                                                  Container(
-                                                                    child: Row(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .spaceAround,
-                                                                      children: [
-                                                                        ElevatedButton(
-                                                                          onPressed:
-                                                                              () {
-                                                                            updateOutline(
+                                                                ),
+                                                                SizedBox(
+                                                                  height: 20,
+                                                                ),
+                                                                Container(
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      left: 10,
+                                                                      right:
+                                                                          10),
+                                                                  child: TextFormField(
+                                                                      style: TextStyle(fontSize: 17, color: color.AppColor.formTextColor),
+                                                                      initialValue: storedocs[i]['title'],
+                                                                      autofocus: false,
+                                                                      onChanged: (value) => title = value,
+                                                                      decoration: ThemeHelper().textInputDecoration('Title', 'Enter Title'),
+                                                                      validator: (value) {
+                                                                        if (value ==
+                                                                                null ||
+                                                                            value.isEmpty) {
+                                                                          return 'Please Enter Title';
+                                                                        }
+                                                                        return null;
+                                                                      }),
+                                                                  decoration:
+                                                                      ThemeHelper()
+                                                                          .inputBoxDecorationShaddow(),
+                                                                ),
+                                                                SizedBox(
+                                                                  height: 20,
+                                                                ),
+                                                                Container(
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      left: 10,
+                                                                      right:
+                                                                          10),
+                                                                  child: TextFormField(
+                                                                      style: TextStyle(fontSize: 17, color: color.AppColor.formTextColor),
+                                                                      initialValue: storedocs[i]['description'],
+                                                                      autofocus: false,
+                                                                      maxLines: 4,
+                                                                      onChanged: (value) => description = value,
+                                                                      decoration: ThemeHelper().textInputDecoration('Description', 'Enter Description'),
+                                                                      validator: (value) {
+                                                                        if (value ==
+                                                                                null ||
+                                                                            value.isEmpty) {
+                                                                          return 'Please Enter Description';
+                                                                        }
+                                                                        return null;
+                                                                      }),
+                                                                  decoration:
+                                                                      ThemeHelper()
+                                                                          .inputBoxDecorationShaddow(),
+                                                                ),
+                                                                SizedBox(
+                                                                  height: 20,
+                                                                ),
+                                                                Container(
+                                                                  child: Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceAround,
+                                                                    children: [
+                                                                      ElevatedButton(
+                                                                        onPressed:
+                                                                            () {
+                                                                          updateOutline(
                                                                               storedocs[i]['title'],
                                                                               storedocs[i]['description'],
-                                                                                storedocs[i]['id'],
-                                                                                title,
-                                                                                description);
-                                                                          },
-                                                                          child:
-                                                                              const Text(
-                                                                            'Edit',
-                                                                            style:
-                                                                                const TextStyle(fontSize: 24.0),
-                                                                          ),
+                                                                              storedocs[i]['id'],
+                                                                              title,
+                                                                              description);
+                                                                        },
+                                                                        child:
+                                                                            const Text(
+                                                                          'Edit',
+                                                                          style:
+                                                                              const TextStyle(fontSize: 24.0),
                                                                         ),
-                                                                      ],
-                                                                    ),
-                                                                  )
-                                                                ])));
-                                                  })
-                                            },
-                                            icon: Icon(
-                                              Icons.edit,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                )
+                                                              ])));
+                                                })
+                                          },
+                                          icon: Icon(
+                                            Icons.edit,
+                                            color:
+                                                Color.fromARGB(255, 32, 21, 78),
+                                            size: 30,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 80,
+                                      ),
+                                      Tooltip(
+                                        message: 'Delete',
+                                        child: IconButton(
+                                          onPressed: () => {
+                                            deleteOutline(storedocs[i]['id'])
+                                          },
+                                          icon: Icon(Icons.delete,
                                               color: Color.fromARGB(
-                                                  255, 32, 21, 78),
-                                              size: 30,
-                                            ),
-                                          ),
+                                                  255, 143, 45, 38),
+                                              size: 30),
                                         ),
-                                        SizedBox(
-                                          width: 80,
-                                        ),
-                                        Tooltip(
-                                          message: 'Delete',
-                                          child: IconButton(
-                                            onPressed: () => {
-                                              deleteOutline(storedocs[i]['id'])
-                                            },
-                                            icon: Icon(Icons.delete,
-                                                color: Color.fromARGB(
-                                                    255, 143, 45, 38),
-                                                size: 30),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                )),
-                          ),
-                        ],
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              )),
+                        ),
                       ],
-                    ),
+                    ],
                   ),
+                ),
                 // ),
               ]),
             ),
+          ),
           );
         });
   }

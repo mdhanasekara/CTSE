@@ -3,6 +3,8 @@ import 'package:CTSE/pages/module-pages/notices_list.dart';
 import 'package:flutter/material.dart';
 import 'package:CTSE/colors.dart' as color;
 
+import '../widgets/user_drawer.dart';
+
 class UserDashboard extends StatelessWidget {
   const UserDashboard({Key? key}) : super(key: key);
 
@@ -38,6 +40,7 @@ class UserDashboard extends StatelessWidget {
     ];
 
     return Scaffold(
+      drawer: UserNavigationDrawer(),
         backgroundColor: color.AppColor.homePageBackground,
         body: Container(
           padding: const EdgeInsets.only(top: 20, left: 0, right: 0),
