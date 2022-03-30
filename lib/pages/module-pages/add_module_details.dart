@@ -192,10 +192,10 @@ class _AddModuleDetailsState extends State<AddModuleDetails> {
                           ),
                         )),
                     onTap: () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (context) => NoticesList()),
-                          (Route<dynamic> route) => false);
+                      // Navigator.of(context).pushAndRemoveUntil(
+                      //     MaterialPageRoute(
+                      //         builder: (context) => NoticesList()),
+                      //     (Route<dynamic> route) => false);
                       setState(() {
                         title = titleController.text;
                         description = descriptionController.text;

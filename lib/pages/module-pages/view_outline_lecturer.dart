@@ -4,42 +4,42 @@ import 'package:CTSE/colors.dart' as color;
 
 import '../../common/theme_helper.dart';
 
-class ViewNotices extends StatefulWidget {
-  const ViewNotices({Key? key}) : super(key: key);
+class ViewModuleOutline extends StatefulWidget {
+  const ViewModuleOutline({Key? key}) : super(key: key);
 
   @override
-  State<ViewNotices> createState() => _ViewNoticesState();
+  State<ViewModuleOutline> createState() => _ViewModuleOutlineState();
 }
 
-class _ViewNoticesState extends State<ViewNotices> {
+class _ViewModuleOutlineState extends State<ViewModuleOutline> {
   var title = '';
   var description = '';
 
-  final Stream<QuerySnapshot> noticesStream =
-      FirebaseFirestore.instance.collection('notices').snapshots();
+  final Stream<QuerySnapshot> outlineStream =
+      FirebaseFirestore.instance.collection('moduleOutlineDetails').snapshots();
 
-  CollectionReference notices =
-      FirebaseFirestore.instance.collection('notices');
+  CollectionReference moduleOutlineDetails =
+      FirebaseFirestore.instance.collection('moduleOutlineDetails');
 
   // Delete
-  Future<void> deleteNotice(id) {
-    return notices
+  Future<void> deleteOutline(id) {
+    return moduleOutlineDetails
         .doc(id)
         .delete()
-        .then((value) => print('Notice Deleted'))
-        .catchError((error) => print('Failed to Delete Notice: $error'));
+        .then((value) => print('Module Outline Detail Deleted'))
+        .catchError((error) => print('Failed to Delete Module Outline Detail: $error'));
   }
 
   // Update
-  Future<void> updateNotice(oldTitle, oldDes, id, title, description) {
+  Future<void> updateOutline(oldTitle, oldDes, id, title, description) {
     if(title == '') title = oldTitle;
     if(description == '') title = oldDes;
 
-    return notices
+    return moduleOutlineDetails
         .doc(id)
         .update({'title': title, 'description': description})
-        .then((value) => print("Notice Updated"))
-        .catchError((error) => print("Failed to update notice: $error"));
+        .then((value) => print("Module Outline Details Updated"))
+        .catchError((error) => print("Failed to update Module Outline Details: $error"));
   }
 
   @override
@@ -47,7 +47,7 @@ class _ViewNoticesState extends State<ViewNotices> {
     Size size = MediaQuery.of(context).size;
 
     return StreamBuilder<QuerySnapshot>(
-        stream: noticesStream,
+        stream: outlineStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             print('Something went Wrong');
@@ -89,12 +89,13 @@ class _ViewNoticesState extends State<ViewNotices> {
                 Positioned(
                   bottom: 0,
                   child: Image.asset(
-                    'images/noticeLec.jpg',
+                    'images/outlineLec.jpg',
                     width: size.width * 0.7,
                   ),
                 ),
-                SingleChildScrollView(
-                  child: Container(
+                // SingleChildScrollView(
+                  // child: 
+                  Container(
                     padding: const EdgeInsets.only(
                         top: 50, left: 10, right: 10, bottom: 0),
                     child: Column(
@@ -115,7 +116,7 @@ class _ViewNoticesState extends State<ViewNotices> {
                                 width: 10,
                               ),
                               Text(
-                                "Notices",
+                                "Module Outline Details",
                                 style: TextStyle(
                                     fontSize: 20,
                                     color: color.AppColor.homePageTitle,
@@ -203,7 +204,7 @@ class _ViewNoticesState extends State<ViewNotices> {
                                                                           20),
                                                                   Center(
                                                                     child: Text(
-                                                                      "Edit Notice",
+                                                                      "Edit Module Outline",
                                                                       style: TextStyle(
                                                                           fontSize:
                                                                               24,
@@ -280,7 +281,7 @@ class _ViewNoticesState extends State<ViewNotices> {
                                                                         ElevatedButton(
                                                                           onPressed:
                                                                               () {
-                                                                            updateNotice(
+                                                                            updateOutline(
                                                                               storedocs[i]['title'],
                                                                               storedocs[i]['description'],
                                                                                 storedocs[i]['id'],
@@ -315,7 +316,7 @@ class _ViewNoticesState extends State<ViewNotices> {
                                           message: 'Delete',
                                           child: IconButton(
                                             onPressed: () => {
-                                              deleteNotice(storedocs[i]['id'])
+                                              deleteOutline(storedocs[i]['id'])
                                             },
                                             icon: Icon(Icons.delete,
                                                 color: Color.fromARGB(
@@ -332,7 +333,7 @@ class _ViewNoticesState extends State<ViewNotices> {
                       ],
                     ),
                   ),
-                ),
+                // ),
               ]),
             ),
           );

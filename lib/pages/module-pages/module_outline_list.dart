@@ -60,7 +60,7 @@ class _ModuleOutlineListState extends State<ModuleOutlineList> {
                 Positioned(
                   bottom: 0,
                   child: Image.asset(
-                    'images/listModuleDetails.png',
+                    'images/outline.jpg',
                     width: size.width * 0.7,
                   ),
                 ),
