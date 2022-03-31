@@ -74,7 +74,15 @@ flutter:
     - images/moduleOutline.jpg
     - images/profileBox.png
     - images/studyMaterials.jpg
-
+    - images/noticeLec.jpg
+    - images/outline.jpg
+    - images/LAddMD.png
+    - images/LAddStudy.png
+    - images/LModuleO.png
+    - images/Lnote.png
+    - images/LProfile.png
+    - images/LStudyM.png
+    - images/outlineLec.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

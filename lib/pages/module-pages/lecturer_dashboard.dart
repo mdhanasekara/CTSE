@@ -1,46 +1,54 @@
-import 'package:CTSE/pages/module-pages/module_outline_list.dart';
-import 'package:CTSE/pages/module-pages/notices_list.dart';
+import 'package:CTSE/pages/module-pages/add_module_details.dart';
+import 'package:CTSE/pages/module-pages/view_notices_lecturer.dart';
+import 'package:CTSE/pages/module-pages/view_outline_lecturer.dart';
 import 'package:flutter/material.dart';
 import 'package:CTSE/colors.dart' as color;
 
-import '../widgets/user_drawer.dart';
+import '../widgets/lecturer_drawer.dart';
 
-class UserDashboard extends StatelessWidget {
-  const UserDashboard({Key? key}) : super(key: key);
+class LecturerDashboard extends StatelessWidget {
+  const LecturerDashboard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     List<String> topics = [
-      'Notices',
-      'Module Outline',
-      'Study Materials',
-      'Profile'
+      'View Notices',
+      'View Module Outline',
+      'Add Module Details',
+      'View Study Materials',
+      'Add Study Materials',
+      'Profile',
     ];
 
     List<Color> colorsList = [
-      Color.fromARGB(255, 233, 228, 187).withOpacity(0.6),
-      Color.fromARGB(255, 233, 230, 235).withOpacity(0.6),
-      Color.fromARGB(255, 99, 182, 247).withOpacity(0.6),
-      Color.fromARGB(255, 235, 206, 204).withOpacity(0.6),
+      Color.fromARGB(255, 185, 240, 201).withOpacity(0.6),
+      Color.fromARGB(255, 252, 208, 151).withOpacity(0.6),
+      Color.fromARGB(255, 235, 208, 220).withOpacity(0.6),
+      Color.fromARGB(255, 202, 226, 241).withOpacity(0.6),
+      Color.fromARGB(255, 238, 237, 237).withOpacity(0.6),
+      Color.fromARGB(255, 150, 172, 235).withOpacity(0.6),
     ];
 
     List<String> imageList = [
-      "images/notices.png",
-      "images/moduleOutline.jpg",
-      "images/studyMaterials.jpg",
-      "images/profileBox.png",
+      "images/Lnote.png",
+      "images/LModuleO.png",
+      "images/LAddMD.png",
+      "images/LStudyM.png",
+      "images/LAddStudy.png",
+      "images/LProfile.png",
     ];
 
     List<Widget> pageList = [
-      NoticesList(),
-      ModuleOutlineList(),
-      NoticesList(),
-      NoticesList(),
+      ViewNotices(),
+      ViewModuleOutline(),
+      AddModuleDetails(),
+      ViewNotices(),
+      ViewNotices(),
     ];
 
     return Scaffold(
-        drawer: UserNavigationDrawer(),
+      drawer: LecturerDrawer(),
         backgroundColor: color.AppColor.homePageBackground,
         body: Builder(builder:(context) =>  
         Container(
@@ -69,13 +77,13 @@ class UserDashboard extends StatelessWidget {
                   Row(
                     children: [
                       IconButton(
-                        onPressed: () => {Scaffold.of(context).openDrawer()},
-                        icon: Icon(Icons.menu,
-                            color: color.AppColor.homePageIcons, size: 30),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
+                              onPressed: () => {
+                                Scaffold.of(context).openDrawer()
+                              },
+                              icon: Icon(Icons.menu,
+                                  color: color.AppColor.homePageIcons,
+                                  size: 30),
+                            ),
                       Text(
                         "Dashboard",
                         style: TextStyle(
@@ -89,7 +97,7 @@ class UserDashboard extends StatelessWidget {
                 ]),
               ),
               Container(
-                padding: const EdgeInsets.only(top: 150, left: 15, right: 15),
+                padding: const EdgeInsets.only(top: 100, left: 15, right: 15),
                 child: Column(children: [
                   Expanded(
                       child: GridView.count(
@@ -114,24 +122,25 @@ class UserDashboard extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Column(children: [
+                              Center(child: 
                               Text(
                                 topics[i],
                                 style: TextStyle(
                                     color: color.AppColor.homePageSubtitle,
-                                    fontSize: 20,
+                                    fontSize: 17,
                                     fontWeight: FontWeight.w600),
-                              ),
+                              )),
                               SizedBox(
-                                height: 5,
+                                height: 15,
                               ),
                               Row(children: [
                                 SizedBox(
-                                  width: 15,
+                                  width: 20,
                                 ),
                                 Center(
                                   child: Image.asset(
                                     imageList[i],
-                                    width: size.width * 0.35,
+                                    width: size.width * 0.3,
                                   ),
                                 ),
                               ]),

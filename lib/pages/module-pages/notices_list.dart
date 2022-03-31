@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:CTSE/colors.dart' as color;
 
+import '../widgets/user_drawer.dart';
+
 class NoticesList extends StatefulWidget {
   const NoticesList({Key? key}) : super(key: key);
 
@@ -37,8 +39,10 @@ class _NoticesListState extends State<NoticesList> {
           }).toList();
 
           return Scaffold(
+            drawer: UserNavigationDrawer(),
             backgroundColor: color.AppColor.homePageBackground,
-            body: Container(
+            body: Builder(builder:(context) =>  
+            Container(
               padding: const EdgeInsets.only(top: 20, left: 0, right: 0),
               child: Stack(alignment: Alignment.center, children: <Widget>[
                 ClipPath(
@@ -75,12 +79,14 @@ class _NoticesListState extends State<NoticesList> {
                           child: Row(
                             children: [
                               SizedBox(
-                                width: 20,
+                                width: 10,
                               ),
-                              Icon(
-                                Icons.arrow_back_ios,
-                                size: 20,
-                                color: color.AppColor.homePageIcons,
+                              IconButton(
+                                onPressed: () =>
+                                    {Scaffold.of(context).openDrawer()},
+                                icon: Icon(Icons.menu,
+                                    color: color.AppColor.homePageIcons,
+                                    size: 30),
                               ),
                               SizedBox(
                                 width: 10,
@@ -109,9 +115,8 @@ class _NoticesListState extends State<NoticesList> {
                                 height: 100,
                                 width: size.width,
                                 decoration: BoxDecoration(
-                                  // color: Colors.grey[400],
-                                  color:
-                                      color.AppColor.secondPageTopIconColor.withOpacity(0.6),
+                                  color: Color.fromARGB(255, 119, 169, 209)
+                                      .withOpacity(0.6),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Column(
@@ -151,7 +156,7 @@ class _NoticesListState extends State<NoticesList> {
                 ),
               ]),
             ),
-          );
+          ));
         });
   }
 }

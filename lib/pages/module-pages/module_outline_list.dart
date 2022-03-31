@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:CTSE/colors.dart' as color;
 
+import '../widgets/user_drawer.dart';
+
 class ModuleOutlineList extends StatefulWidget {
   const ModuleOutlineList({Key? key}) : super(key: key);
 
@@ -37,8 +39,10 @@ class _ModuleOutlineListState extends State<ModuleOutlineList> {
           }).toList();
 
           return Scaffold(
+            drawer: UserNavigationDrawer(),
             backgroundColor: color.AppColor.homePageBackground,
-            body: Container(
+            body: Builder(builder:(context) =>  
+            Container(
               padding: const EdgeInsets.only(top: 20, left: 0, right: 0),
               child: Stack(alignment: Alignment.center, children: <Widget>[
                 ClipPath(
@@ -60,7 +64,7 @@ class _ModuleOutlineListState extends State<ModuleOutlineList> {
                 Positioned(
                   bottom: 0,
                   child: Image.asset(
-                    'images/listModuleDetails.png',
+                    'images/outline.jpg',
                     width: size.width * 0.7,
                   ),
                 ),
@@ -76,12 +80,14 @@ class _ModuleOutlineListState extends State<ModuleOutlineList> {
                         child: Row(
                           children: [
                             SizedBox(
-                              width: 20,
+                              width: 10,
                             ),
-                            Icon(
-                              Icons.arrow_back_ios,
-                              size: 20,
-                              color: color.AppColor.homePageIcons,
+                            IconButton(
+                              onPressed: () =>
+                                  {Scaffold.of(context).openDrawer()},
+                              icon: Icon(Icons.menu,
+                                  color: color.AppColor.homePageIcons,
+                                  size: 30),
                             ),
                             SizedBox(
                               width: 10,
@@ -99,51 +105,52 @@ class _ModuleOutlineListState extends State<ModuleOutlineList> {
                       SizedBox(
                         height: 40,
                       ),
-                      // SingleChildScrollView(
-
                       for (var i = 0; i < storedocs.length; i++) ...[
-                        Expanded(child: 
-                        Positioned(
-                          top:20,
-                          child: Container(
-                              margin: EdgeInsets.all(5),
-                              padding:
-                                  const EdgeInsets.only( left: 10, right: 5),
-                              height: 100,
-                              width: size.width,
-                              decoration: BoxDecoration(
-                                // color: Colors.grey[400]?.withOpacity(0.5),
-                                color: color.AppColor.secondPageTopIconColor.withOpacity(0.6),
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Column(
-                                children: [
-                                  Row(children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 10),
-                                      child: Text(
-                                        storedocs[i]['title'],
-                                        style: TextStyle(
-                                            fontSize: 17,
-                                            color: color.AppColor.gradientFirst,
-                                            fontWeight: FontWeight.bold),
+                        Expanded(
+                          child: Positioned(
+                            top: 20,
+                            child: Container(
+                                margin: EdgeInsets.all(5),
+                                padding:
+                                    const EdgeInsets.only(left: 10, right: 5),
+                                height: 100,
+                                width: size.width,
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 119, 169, 209)
+                                      .withOpacity(0.6),
+                                  // color: color.AppColor.secondPageTopIconColor.withOpacity(0.6),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Column(
+                                  children: [
+                                    Row(children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 10),
+                                        child: Text(
+                                          storedocs[i]['title'],
+                                          style: TextStyle(
+                                              fontSize: 17,
+                                              color:
+                                                  color.AppColor.gradientFirst,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ),
-                                    ),
-                                  ]),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Text(storedocs[i]['description'],
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w600)),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              )),
-                        ),
+                                    ]),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                              storedocs[i]['description'],
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w600)),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                )),
+                          ),
                         )
                       ],
                     ],
@@ -151,7 +158,7 @@ class _ModuleOutlineListState extends State<ModuleOutlineList> {
                 ),
               ]),
             ),
-          );
+          ));
         });
   }
 }
