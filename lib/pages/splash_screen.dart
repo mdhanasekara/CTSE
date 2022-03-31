@@ -56,15 +56,6 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Container(
             height: 140.0,
             width: 140.0,
-            // child: Center(
-            //   child: ClipOval(
-            //     child: Icon(
-            //       Icons.book,
-            //       size: 128,
-            //     ),
-            //     //put your logo here
-            //   ),
-            // ),
             decoration: BoxDecoration(
                 image: const DecorationImage(
                     image: AssetImage("images/logo.jpg"), fit: BoxFit.cover),

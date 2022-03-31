@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:CTSE/pages/add_student_page.dart';
 import 'package:CTSE/pages/list_student_page.dart';
+//import 'package:CTSE/pages/user_profile.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -34,6 +35,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       backgroundColor: Colors.white,
+      //body: ProfilePage(),
       body: ListStudentPage(),
     );
   }

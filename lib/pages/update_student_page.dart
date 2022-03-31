@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:CTSE/common/theme_helper.dart';
 import 'widgets/header_widget.dart';
+import 'package:CTSE/pages/widgets/color_filters.dart';
 
 class UpdateStudentPage extends StatefulWidget {
   final String id;
@@ -13,7 +14,7 @@ class UpdateStudentPage extends StatefulWidget {
 
 class _UpdateStudentPageState extends State<UpdateStudentPage> {
   final _formKey = GlobalKey<FormState>();
-final double _headerHeight = 250;
+  final double _headerHeight = 250;
   // Updaing Student
   CollectionReference students =
       FirebaseFirestore.instance.collection('students');
@@ -33,6 +34,7 @@ final double _headerHeight = 250;
       appBar: AppBar(
         title: const Text("Update Student"),
       ),
+      backgroundColor: Color.fromARGB(255, 244, 244, 248),
       body: Form(
           key: _formKey,
           // Getting Specific Data by ID
@@ -55,12 +57,39 @@ final double _headerHeight = 250;
               var lname = data['lname'];
               var email = data['email'];
               var mobile = data['mobile'];
+
+              Widget buildImageCard() => Card(
+                    clipBehavior: Clip.antiAlias,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Ink.image(
+                          image: NetworkImage(
+                            'https://media.istockphoto.com/vectors/highquality-content-production-vector-id1053951080',
+                          ),
+                          //colorFilter: ColorFilters.greyscale,
+                          child: InkWell(
+                            onTap: () {},
+                          ),
+                          height: 170,
+                          fit: BoxFit.cover,
+                        ),
+                      ],
+                    ),
+                  );
+
               return Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-                child: ListView(                 
-                  children: [    
-              
+                child: ListView(
+                  children: [
+                    buildImageCard(),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Container(
                       margin: const EdgeInsets.symmetric(vertical: 10.0),
                       child: TextFormField(
@@ -78,7 +107,7 @@ final double _headerHeight = 250;
                       decoration: ThemeHelper().inputBoxDecorationShaddow(),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Container(
                       margin: const EdgeInsets.symmetric(vertical: 10.0),
@@ -97,7 +126,7 @@ final double _headerHeight = 250;
                       decoration: ThemeHelper().inputBoxDecorationShaddow(),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Container(
                       margin: const EdgeInsets.symmetric(vertical: 10.0),
@@ -120,7 +149,7 @@ final double _headerHeight = 250;
                       decoration: ThemeHelper().inputBoxDecorationShaddow(),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Container(
                       margin: const EdgeInsets.symmetric(vertical: 10.0),
@@ -139,7 +168,7 @@ final double _headerHeight = 250;
                       decoration: ThemeHelper().inputBoxDecorationShaddow(),
                     ),
                     const SizedBox(
-                      height: 30,
+                      height: 20,
                     ),
                     Container(
                       child: Row(
@@ -156,12 +185,16 @@ final double _headerHeight = 250;
                             },
                             child: const Text(
                               'Update',
-                              style: const TextStyle(fontSize: 24.0),
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 53, 3, 46),
+                              ),
                             ),
                           ),
                         ],
                       ),
-                    )               
+                    )
                   ],
                 ),
               );
