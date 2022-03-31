@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:CTSE/colors.dart' as color;
 import 'package:CTSE/pages/module-pages/notices_list.dart';
 
+import '../widgets/lecturer_drawer.dart';
+
 class AddModuleDetails extends StatefulWidget {
   const AddModuleDetails({Key? key}) : super(key: key);
 
@@ -66,8 +68,11 @@ class _AddModuleDetailsState extends State<AddModuleDetails> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
+      drawer: LecturerDrawer(),
       backgroundColor: color.AppColor.homePageBackground,
-      body: Container(
+      body: 
+      Builder(builder:(context) =>  
+      Container(
         padding: const EdgeInsets.only(top: 25),
         child: Stack(
           alignment: Alignment.bottomRight,
@@ -102,11 +107,14 @@ class _AddModuleDetailsState extends State<AddModuleDetails> {
                 child: Column(children: [
                   Row(
                     children: [
-                      Icon(
-                        Icons.arrow_back_ios,
-                        size: 20,
-                        color: color.AppColor.homePageIcons,
-                      ),
+                      IconButton(
+                              onPressed: () => {
+                                Scaffold.of(context).openDrawer()
+                              },
+                              icon: Icon(Icons.menu,
+                                  color: color.AppColor.homePageIcons,
+                                  size: 30),
+                            ),
                       SizedBox(
                         width: 10,
                       ),
@@ -191,11 +199,7 @@ class _AddModuleDetailsState extends State<AddModuleDetails> {
                             ),
                           ),
                         )),
-                    onTap: () {
-                      // Navigator.of(context).pushAndRemoveUntil(
-                      //     MaterialPageRoute(
-                      //         builder: (context) => NoticesList()),
-                      //     (Route<dynamic> route) => false);
+                    onTap: () {;
                       setState(() {
                         title = titleController.text;
                         description = descriptionController.text;
@@ -210,6 +214,7 @@ class _AddModuleDetailsState extends State<AddModuleDetails> {
           ],
         ),
       ),
+    )
     );
   }
 }

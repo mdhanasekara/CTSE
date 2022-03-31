@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:CTSE/colors.dart' as color;
 
+import '../widgets/user_drawer.dart';
+
 class ModuleOutlineList extends StatefulWidget {
   const ModuleOutlineList({Key? key}) : super(key: key);
 
@@ -37,8 +39,10 @@ class _ModuleOutlineListState extends State<ModuleOutlineList> {
           }).toList();
 
           return Scaffold(
+            drawer: UserNavigationDrawer(),
             backgroundColor: color.AppColor.homePageBackground,
-            body: Container(
+            body: Builder(builder:(context) =>  
+            Container(
               padding: const EdgeInsets.only(top: 20, left: 0, right: 0),
               child: Stack(alignment: Alignment.center, children: <Widget>[
                 ClipPath(
@@ -76,12 +80,14 @@ class _ModuleOutlineListState extends State<ModuleOutlineList> {
                         child: Row(
                           children: [
                             SizedBox(
-                              width: 20,
+                              width: 10,
                             ),
-                            Icon(
-                              Icons.arrow_back_ios,
-                              size: 20,
-                              color: color.AppColor.homePageIcons,
+                            IconButton(
+                              onPressed: () =>
+                                  {Scaffold.of(context).openDrawer()},
+                              icon: Icon(Icons.menu,
+                                  color: color.AppColor.homePageIcons,
+                                  size: 30),
                             ),
                             SizedBox(
                               width: 10,
@@ -99,8 +105,6 @@ class _ModuleOutlineListState extends State<ModuleOutlineList> {
                       SizedBox(
                         height: 40,
                       ),
-                      // SingleChildScrollView(
-
                       for (var i = 0; i < storedocs.length; i++) ...[
                         Expanded(
                           child: Positioned(
@@ -154,7 +158,7 @@ class _ModuleOutlineListState extends State<ModuleOutlineList> {
                 ),
               ]),
             ),
-          );
+          ));
         });
   }
 }

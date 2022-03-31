@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:CTSE/colors.dart' as color;
 
 import '../../common/theme_helper.dart';
+import '../widgets/lecturer_drawer.dart';
 
 class ViewNotices extends StatefulWidget {
   const ViewNotices({Key? key}) : super(key: key);
@@ -66,8 +67,10 @@ class _ViewNoticesState extends State<ViewNotices> {
           }).toList();
 
           return Scaffold(
+            drawer: LecturerDrawer(),
             backgroundColor: color.AppColor.homePageBackground,
-            body: Container(
+            body: Builder(builder:(context) =>  
+            Container(
               padding: const EdgeInsets.only(top: 20, left: 0, right: 0),
               child: Stack(alignment: Alignment.center, children: <Widget>[
                 ClipPath(
@@ -104,13 +107,16 @@ class _ViewNoticesState extends State<ViewNotices> {
                           child: Row(
                             children: [
                               SizedBox(
-                                width: 20,
+                                width: 10,
                               ),
-                              Icon(
-                                Icons.arrow_back_ios,
-                                size: 20,
-                                color: color.AppColor.homePageIcons,
-                              ),
+                              IconButton(
+                              onPressed: () => {
+                                Scaffold.of(context).openDrawer()
+                              },
+                              icon: Icon(Icons.menu,
+                                  color: color.AppColor.homePageIcons,
+                                  size: 30),
+                            ),
                               SizedBox(
                                 width: 10,
                               ),
@@ -127,8 +133,6 @@ class _ViewNoticesState extends State<ViewNotices> {
                         SizedBox(
                           height: 35,
                         ),
-                        // SingleChildScrollView(
-
                         for (var i = 0; i < storedocs.length; i++) ...[
                           Positioned(
                             child: Container(
@@ -140,8 +144,6 @@ class _ViewNoticesState extends State<ViewNotices> {
                                 decoration: BoxDecoration(
                                   color: Color.fromARGB(255, 119, 169, 209)
                                       .withOpacity(0.6),
-                                  // color: color.AppColor.secondPageTopIconColor
-                                  // .withOpacity(0.6),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Column(
@@ -335,7 +337,7 @@ class _ViewNoticesState extends State<ViewNotices> {
                 ),
               ]),
             ),
-          );
+          ));
         });
   }
 }

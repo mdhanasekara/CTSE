@@ -33,16 +33,17 @@ class UserDashboard extends StatelessWidget {
     ];
 
     List<Widget> pageList = [
-       NoticesList(),
-       ModuleOutlineList(),
-       NoticesList(),
-       NoticesList(),
+      NoticesList(),
+      ModuleOutlineList(),
+      NoticesList(),
+      NoticesList(),
     ];
 
     return Scaffold(
-      drawer: UserNavigationDrawer(),
+        drawer: UserNavigationDrawer(),
         backgroundColor: color.AppColor.homePageBackground,
-        body: Container(
+        body: Builder(builder:(context) =>  
+        Container(
           padding: const EdgeInsets.only(top: 20, left: 0, right: 0),
           child: Stack(
             children: <Widget>[
@@ -63,10 +64,18 @@ class UserDashboard extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.only(top: 60, left: 30),
+                padding: const EdgeInsets.only(top: 60, left: 10),
                 child: Column(children: [
                   Row(
                     children: [
+                      IconButton(
+                        onPressed: () => {Scaffold.of(context).openDrawer()},
+                        icon: Icon(Icons.menu,
+                            color: color.AppColor.homePageIcons, size: 30),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
                       Text(
                         "Dashboard",
                         style: TextStyle(
@@ -136,7 +145,7 @@ class UserDashboard extends StatelessWidget {
               )
             ],
           ),
-        ));
+        )));
   }
 }
 

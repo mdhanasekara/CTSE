@@ -4,6 +4,8 @@ import 'package:CTSE/pages/module-pages/view_outline_lecturer.dart';
 import 'package:flutter/material.dart';
 import 'package:CTSE/colors.dart' as color;
 
+import '../widgets/lecturer_drawer.dart';
+
 class LecturerDashboard extends StatelessWidget {
   const LecturerDashboard({Key? key}) : super(key: key);
 
@@ -46,8 +48,10 @@ class LecturerDashboard extends StatelessWidget {
     ];
 
     return Scaffold(
+      drawer: LecturerDrawer(),
         backgroundColor: color.AppColor.homePageBackground,
-        body: Container(
+        body: Builder(builder:(context) =>  
+        Container(
           padding: const EdgeInsets.only(top: 20, left: 0, right: 0),
           child: Stack(
             children: <Widget>[
@@ -68,10 +72,18 @@ class LecturerDashboard extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.only(top: 60, left: 30),
+                padding: const EdgeInsets.only(top: 60, left: 10),
                 child: Column(children: [
                   Row(
                     children: [
+                      IconButton(
+                              onPressed: () => {
+                                Scaffold.of(context).openDrawer()
+                              },
+                              icon: Icon(Icons.menu,
+                                  color: color.AppColor.homePageIcons,
+                                  size: 30),
+                            ),
                       Text(
                         "Dashboard",
                         style: TextStyle(
@@ -142,7 +154,7 @@ class LecturerDashboard extends StatelessWidget {
               )
             ],
           ),
-        ));
+        )));
   }
 }
 
