@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:CTSE/pages/module-pages/user_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:CTSE/pages/splash_screen.dart';
 import 'pages/splash_screen.dart';
@@ -22,17 +23,14 @@ class MyApp extends StatelessWidget {
         // once Completed, show your application
         if (snapshot.connectionState == ConnectionState.done) {
           return MaterialApp(
-            title: 'Course Registration',
+            title: 'Course Information',
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
             debugShowCheckedModeBanner: false,
-            // home: HomePage(),
-            home: SplashScreen(title: 'Flutter Login UI'),
+            home: UserDashboard(),
           );
-        }
-        return CircularProgressIndicator();
-      },
+        }}
     );
   }
 }

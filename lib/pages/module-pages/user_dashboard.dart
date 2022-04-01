@@ -1,3 +1,4 @@
+import 'package:CTSE/pages/module-pages/amin_view_lecture_details.dart';
 import 'package:CTSE/pages/module-pages/module_outline_list.dart';
 import 'package:CTSE/pages/module-pages/notices_list.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,7 @@ class UserDashboard extends StatelessWidget {
     List<Widget> pageList = [
       NoticesList(),
       ModuleOutlineList(),
-      NoticesList(),
+      ViewLectureDetails(),
       NoticesList(),
     ];
 
