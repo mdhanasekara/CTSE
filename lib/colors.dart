@@ -18,5 +18,5 @@ class AppColor{
   static Color secondPageIconColor= const Color(0xFFfafafe);
   static Color loopColor = const Color(0xFF6d8dea);
   static Color setsColor = const Color(0xFF9999a9);
-  static Color formTextColor = const Color(0xFF2f2f51);
+  static Color formTextColor = Color.fromARGB(255, 5, 5, 58);
 }

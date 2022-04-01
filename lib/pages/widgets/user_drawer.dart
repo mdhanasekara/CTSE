@@ -2,7 +2,7 @@ import 'package:CTSE/pages/module-pages/module_outline_list.dart';
 import 'package:CTSE/pages/module-pages/notices_list.dart';
 import 'package:CTSE/pages/module-pages/user_dashboard.dart';
 import 'package:flutter/material.dart';
-
+import 'package:CTSE/colors.dart' as color;
 class UserNavigationDrawer extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
 
@@ -10,7 +10,8 @@ class UserNavigationDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Material(
-        color: Color.fromRGBO(50, 75, 205, 1),
+        // color: Color.fromRGBO(50, 75, 205, 1),
+        color: color.AppColor.formTextColor,
         child: ListView(
           padding: padding,
           children: <Widget>[
