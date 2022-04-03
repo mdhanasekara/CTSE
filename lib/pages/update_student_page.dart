@@ -16,11 +16,11 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
   final _formKey = GlobalKey<FormState>();
   final double _headerHeight = 250;
   // Updaing Student
-  CollectionReference students =
-      FirebaseFirestore.instance.collection('students');
+  CollectionReference users =
+      FirebaseFirestore.instance.collection('users');
 
   Future<void> updateUser(id, fname, lname, email, mobile) {
-    return students
+    return users
         .doc(id)
         .update(
             {'fname': fname, 'lname': lname, 'email': email, 'mobile': mobile})
@@ -40,7 +40,7 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
           // Getting Specific Data by ID
           child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
             future: FirebaseFirestore.instance
-                .collection('students')
+                .collection('users')
                 .doc(widget.id)
                 .get(),
             builder: (_, snapshot) {

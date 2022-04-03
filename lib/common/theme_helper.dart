@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-
+import 'package:CTSE/colors.dart' as color;
 class ThemeHelper{
 
   InputDecoration textInputDecoration([String lableText="", String hintText = ""]){
@@ -29,8 +29,8 @@ class ThemeHelper{
   }
 
   BoxDecoration buttonBoxDecoration(BuildContext context, [String color1 = "", String color2 = ""]) {
-    Color c1 = Theme.of(context).primaryColor;
-    Color c2 = Theme.of(context).accentColor;
+    Color c1 = color.AppColor.gradientFirst;
+    Color c2 = color.AppColor.gradientFirst;
     if (color1.isEmpty == false) {
       c1 = HexColor(color1);
     }

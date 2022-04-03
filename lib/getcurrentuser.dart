@@ -1,6 +1,6 @@
 // ignore_for_file: unnecessary_brace_in_string_interps
 
-import 'package:CTSE/login.dart';
+import 'package:CTSE/pages/login-pages/Login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,19 +22,6 @@ class getcurrentuser extends StatelessWidget {
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 245, 245, 247),
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          title: Text("Current User Details"),
-          automaticallyImplyLeading: false,
-          actions: [
-            IconButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Login()));
-                },
-                icon: Icon(Icons.logout))
-          ],
-          backgroundColor: Color.fromARGB(255, 3, 28, 70),
-        ),
         // ignore: unnecessary_new
         body: ListView(
           padding: const EdgeInsets.all(8),

@@ -11,15 +11,15 @@ class ListStudentPage extends StatefulWidget {
 }
 
 class _ListStudentPageState extends State<ListStudentPage> {
-  final Stream<QuerySnapshot> studentsStream =
-      FirebaseFirestore.instance.collection('students').snapshots();
+  final Stream<QuerySnapshot> usersStream =
+      FirebaseFirestore.instance.collection('users').snapshots();
 
   // For Deleting User
-  CollectionReference students =
-      FirebaseFirestore.instance.collection('students');
+  CollectionReference users =
+      FirebaseFirestore.instance.collection('users');
   Future<void> deleteUser(id) {
     // print("User Deleted $id");
-    return students
+    return users
         .doc(id)
         .delete()
         .then((value) => print('User Deleted'))
@@ -29,7 +29,7 @@ class _ListStudentPageState extends State<ListStudentPage> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream: studentsStream,
+        stream: usersStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             print('Something went Wrong');

@@ -1,9 +1,6 @@
 import 'dart:async';
-
+import 'package:CTSE/pages/login-pages/Login.dart';
 import 'package:flutter/material.dart';
-//import 'assets/images/logo.jpg';
-
-import 'home_page.dart';
 
 class SplashScreen extends StatefulWidget {
   SplashScreen({Key? key, required this.title}) : super(key: key);
@@ -21,8 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
     new Timer(const Duration(milliseconds: 2000), () {
       setState(() {
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => HomePage()),
-            (route) => false);
+            MaterialPageRoute(builder: (context) => Login()), (route) => false);
       });
     });
 

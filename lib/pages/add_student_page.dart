@@ -1,5 +1,6 @@
 import 'package:CTSE/pages/widgets/user_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:CTSE/common/theme_helper.dart';
 import 'package:CTSE/pages/widgets/header_widget.dart';
@@ -8,7 +9,6 @@ import 'package:hexcolor/hexcolor.dart';
 import 'home_page.dart';
 import 'widgets/header_widget.dart';
 import 'package:CTSE/colors.dart' as color;
-
 class AddStudentPage extends StatefulWidget {
   AddStudentPage({Key? key}) : super(key: key);
 
@@ -60,22 +60,23 @@ class _AddStudentPageState extends State<AddStudentPage> {
   }
 
   // Adding Student
-  CollectionReference students =
-      FirebaseFirestore.instance.collection('students');
+  CollectionReference users =
+      FirebaseFirestore.instance.collection('users');
 
   Future<void> addUser() {
-    return students
+    return FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, 
+    password: password).then((value) => {
+     users
         .add({
           'fname': fname,
           'lname': lname,
           'email': email,
           'mobile': mobile,
-          'password': password,
-          //'status': status,
           'type': selectedValue,
         })
         .then((value) => print('User Added'))
-        .catchError((error) => print('Failed to Add user: $error'));
+        .catchError((error) => print('Failed to Add user: $error'))
+    });
   }
 
   // Widget buildImageCard() => Card(

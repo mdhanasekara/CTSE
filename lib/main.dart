@@ -1,7 +1,9 @@
+import 'package:CTSE/pages/add_student_page.dart';
+import 'package:CTSE/pages/login-pages/Login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:CTSE/pages/splash_screen.dart';
-import 'pages/splash_screen.dart';
+import 'package:CTSE/pages/splash-pages/splash_screen.dart';
+import 'pages/splash-pages/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,20 +17,17 @@ class MyApp extends StatelessWidget {
     return FutureBuilder(
       future: _initialization,
       builder: (context, snapshot) {
-        // CHeck for Errors
         if (snapshot.hasError) {
           print("Something went Wrong");
         }
-        // once Completed, show your application
         if (snapshot.connectionState == ConnectionState.done) {
           return MaterialApp(
-            title: 'Course Registration',
+            title: 'CTSE',
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
             debugShowCheckedModeBanner: false,
-            // home: HomePage(),
-            home: SplashScreen(title: 'Flutter Login UI'),
+            home: SplashScreen(title: 'CTSE',),
           );
         }
         return CircularProgressIndicator();

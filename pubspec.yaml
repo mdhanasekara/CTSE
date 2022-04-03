@@ -86,7 +86,7 @@ flutter:
     - images/LStudyM.png
     - images/outlineLec.jpg
     - images/addStudent.jpg
-
+    - images/loginImg.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -1,7 +1,7 @@
 //import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:CTSE/pages/splash_screen.dart';
+import 'package:CTSE/pages/splash-pages/splash_screen.dart';
 import 'package:CTSE/pages/widgets/header_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'add_student_page.dart';
@@ -26,7 +26,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
     FirebaseFirestore.instance
-        .collection("students")
+        .collection("users")
         .doc(user!.uid)
         .get()
         .then((value) {
