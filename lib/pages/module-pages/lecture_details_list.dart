@@ -2,8 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:ctse/colors.dart' as color;
-
+import 'package:CTSE/colors.dart' as color;
 import '../widgets/admin_lecture_drawer.dart';
 
 class ListLecturePage extends StatefulWidget {

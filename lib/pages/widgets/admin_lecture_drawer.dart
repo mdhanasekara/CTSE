@@ -1,7 +1,6 @@
 // ignore_for_file: unused_import, prefer_const_declarations, use_key_in_widget_constructors
 
-import 'package:CTSE/login.dart';
-import 'package:CTSE/pages/lecture/update_lecture_page.dart';
+import 'package:CTSE/pages/login-pages/Login.dart';
 import 'package:CTSE/pages/module-pages/add_lecture_details.dart';
 import 'package:CTSE/pages/module-pages/amin_view_lecture_details.dart';
 import 'package:CTSE/pages/module-pages/lecture_details_list.dart';
