@@ -1,9 +1,20 @@
+// ignore_for_file:  unused_import, unnecessary_import, unnecessary_brace_in_string_interps, prefer_typing_uninitialized_variables, non_constant_identifier_names, unnecessary_new, avoid_print, unused_local_variable, unused_field, prefer_final_fields, unused_label, dead_code
 
-import 'package:CTSE/pages/IT19204062/lecturer-pages/custom_input_box.dart';
+import 'dart:io';
+import 'dart:math';
+import 'dart:typed_data';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/services.dart';
+import 'package:http/http.dart'as http;
+
+import 'package:CTSE/pages/lecture/custom_input_box.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:CTSE/colors.dart' as color;
+import 'package:CTSE/pages/module-pages/notices_list.dart';
 import 'package:flutter/foundation.dart';
+
 
 class AddLectureDetails extends StatefulWidget {
   const AddLectureDetails({Key? key}) : super(key: key);
@@ -16,6 +27,9 @@ class _AddLectureDetailsState extends State<AddLectureDetails> {
 
   var title = '';
   var description = '';
+
+  PlatformFile? pickedFile;
+  UploadTask? uploadTask;
 
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
@@ -31,6 +45,7 @@ class _AddLectureDetailsState extends State<AddLectureDetails> {
     titleController.clear();
     descriptionController.clear();
   }
+
 
   // Adding lecture
   CollectionReference lectureDetails =
@@ -56,11 +71,71 @@ class _AddLectureDetailsState extends State<AddLectureDetails> {
      },
    );
 
+Future selectFile() async {
+  final result = await FilePicker.platform.pickFiles();
+  if (result == null) return;
+
+  setState(() {
+    pickedFile = result.files.first;
+  });
+}
+
+Future uploadFile() async {
+  final path = 'files/${pickedFile!.name}';
+final file =File(pickedFile!.path!);
+
+final ref = FirebaseStorage.instance.ref().child(path);
+setState(() {
+  uploadTask = ref.putFile(file);
+});
+final snapshot = await uploadTask!.whenComplete(() => {});
+
+final urlDownload = await snapshot.ref.getDownloadURL();
+print('Download Link: $urlDownload');
+
+setState(() {
+  uploadTask:null;
+});
+}
+ Widget buildProgress() => StreamBuilder<TaskSnapshot>(
+  stream: uploadTask ?.snapshotEvents,
+  builder: (context, snapshot) {
+    if(snapshot.hasData){
+      final data = snapshot.data!;
+      double progress = data.bytesTransferred / data.totalBytes;
+
+       return  SizedBox(
+        height:50,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            LinearProgressIndicator(
+              value: progress,
+              backgroundColor: Colors.grey,
+              color: Colors.green,
+            ),
+            Center(child: Text(
+                '${(100 * progress).roundToDouble()}%',
+                style: const TextStyle(color: Colors.white),
+            ),
+            ),
+          ]
+        ),
+        
+        );
+    }
+    else{
+      return  const SizedBox(height:50);
+    }
+  }
+);
+
   @override
   Widget build(BuildContext context) {
     var scrWidth = MediaQuery.of(context).size.width;
     Size size = MediaQuery.of(context).size;
 
+    var add;
     return Scaffold(
       backgroundColor: color.AppColor.homePageBackground,
       body: Container(
@@ -134,7 +209,24 @@ class _AddLectureDetailsState extends State<AddLectureDetails> {
                   const SizedBox(
                     height: 30,
                   ),
-                  
+                   Text(
+                        "",
+                        style: TextStyle(
+                            fontSize: 12,
+                            color: color.AppColor.homePageTitle,
+                            fontWeight: FontWeight.w700),
+                      ),
+                  ElevatedButton(onPressed: selectFile, 
+                  child: const Text('Select File'),  ),
+                  const SizedBox(
+                    height: 30),
+                 ElevatedButton(onPressed: uploadFile, 
+                  child: const Text('Upload File'),  ),
+                  const SizedBox(
+                    height: 30),
+                    
+                   buildProgress(),
+
                   InkWell(
                     child: Container(
                         margin: const EdgeInsets.symmetric(vertical: 38),
@@ -171,8 +263,12 @@ class _AddLectureDetailsState extends State<AddLectureDetails> {
         ),
       ),
     );
+
+ 
   }
 }
+
+
 
 class OuterClippedPart extends CustomClipper<Path> {
   @override
