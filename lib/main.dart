@@ -1,9 +1,6 @@
-import 'package:CTSE/pages/add_student_page.dart';
-import 'package:CTSE/pages/login-pages/Login.dart';
+import 'package:CTSE/pages/IT19141848/splash-pages/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:CTSE/pages/splash-pages/splash_screen.dart';
-import 'pages/splash-pages/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
