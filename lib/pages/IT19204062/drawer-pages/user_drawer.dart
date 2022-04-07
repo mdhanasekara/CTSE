@@ -4,7 +4,7 @@ import 'package:CTSE/pages/IT19204062/student-pages/module_outline_list.dart';
 import 'package:CTSE/pages/IT19204062/student-pages/notices_list.dart';
 import 'package:CTSE/pages/IT19204062/student-pages/student_dashboard.dart';
 import 'package:flutter/material.dart';
-import 'package:CTSE/colors.dart' as color;
+
 class UserNavigationDrawer extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
 
@@ -12,8 +12,7 @@ class UserNavigationDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Material(
-        // color: Color.fromRGBO(50, 75, 205, 1),
-        color: color.AppColor.formTextColor,
+        color: Color.fromRGBO(50, 75, 205, 1),
         child: ListView(
           padding: padding,
           children: <Widget>[
@@ -82,12 +81,12 @@ void selectedItem(BuildContext context, int index) {
           .push(MaterialPageRoute(builder: (context) => const NoticesList()));
       break;
     case 2:
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => const ModuleOutlineList()));
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const ModuleOutlineList()));
       break;
     case 3:
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => const ListLecturePage()));
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const ListLecturePage()));
       break;
     default:
       Navigator.of(context)
