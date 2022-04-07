@@ -3,16 +3,14 @@
 import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
+import 'package:CTSE/pages/IT19204062/lecturer-pages/custom_input_box.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart'as http;
-
-import 'package:CTSE/pages/lecture/custom_input_box.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:CTSE/colors.dart' as color;
-import 'package:CTSE/pages/module-pages/notices_list.dart';
 import 'package:flutter/foundation.dart';
 
 

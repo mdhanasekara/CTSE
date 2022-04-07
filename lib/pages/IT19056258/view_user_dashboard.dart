@@ -1,10 +1,6 @@
-// ignore_for_file: unused_import, use_key_in_widget_constructors, must_be_immutable
-
-import 'package:CTSE/pages/module-pages/amin_view_lecture_details.dart';
-import 'package:CTSE/pages/module-pages/lecture_details_list.dart';
-import 'package:CTSE/pages/module-pages/add_lecture_details.dart';
-import 'package:CTSE/pages/module-pages/module_outline_list.dart';
-import 'package:CTSE/pages/module-pages/notices_list.dart';
+import 'package:CTSE/pages/IT19056258/lecture_details_list.dart';
+import 'package:CTSE/pages/IT19204062/student-pages/module_outline_list.dart';
+import 'package:CTSE/pages/IT19204062/student-pages/notices_list.dart';
 import 'package:flutter/material.dart';
 import 'package:CTSE/colors.dart' as color;
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
