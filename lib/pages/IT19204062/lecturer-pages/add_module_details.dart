@@ -1,8 +1,9 @@
+import 'package:CTSE/common/theme_helper.dart';
 import 'package:CTSE/pages/IT19204062/drawer-pages/lecturer_drawer.dart';
-import 'package:CTSE/pages/IT19204062/lecturer-pages/custom_input_box.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:CTSE/colors.dart' as color;
+import 'package:fluttertoast/fluttertoast.dart';
 
 class AddModuleDetails extends StatefulWidget {
   const AddModuleDetails({Key? key}) : super(key: key);
@@ -68,151 +69,197 @@ class _AddModuleDetailsState extends State<AddModuleDetails> {
     return Scaffold(
       drawer: LecturerDrawer(),
       backgroundColor: color.AppColor.homePageBackground,
-      body: 
-      Builder(builder:(context) =>  
-      Container(
-        padding: const EdgeInsets.only(top: 25),
+      body: SingleChildScrollView(
         child: Stack(
-          alignment: Alignment.bottomRight,
-          children: <Widget>[
-            ClipPath(
-              clipper: OuterClippedPart(),
-              child: Container(
-                color: color.AppColor.gradientSecond,
-                width: size.width,
-                height: size.height,
-              ),
-            ),
-            ClipPath(
-              clipper: InnerClippedPart(),
-              child: Container(
-                color: color.AppColor.gradientFirst,
-                width: size.width,
-                height: size.height,
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: Image.asset(
-                'images/module.jpg',
-                width: size.width * 0.7,
-              ),
-            ),
-            SingleChildScrollView(
-              child: Container(
-                padding: const EdgeInsets.only(top: 0, left: 30, right: 30),
-                child: Column(children: [
-                  Row(
-                    children: [
-                      IconButton(
-                              onPressed: () => {
-                                Scaffold.of(context).openDrawer()
-                              },
-                              icon: Icon(Icons.menu,
-                                  color: color.AppColor.homePageIcons,
-                                  size: 30),
-                            ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Add Module Details",
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: color.AppColor.homePageTitle,
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 60,
-                  ),
-
-                  DropdownButtonFormField<String>(
-                    hint: Text('Please choose the detail type'),
-                    value: selectedValue,
-                    onChanged: (newValue) {
-                      setState(() {
-                        selectedValue = newValue!;
-                      });
-                    },
-                    items: <String>[
-                      'Please choose the detail type',
-                      'Notices',
-                      'Module Outline Details'
-                    ].map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(27),
-                        borderSide: BorderSide(
-                          color: color.AppColor.gradientFirst,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(27),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                        ),
+          children: [
+            Builder(
+              builder: (context) => Container(
+                padding: const EdgeInsets.only(
+                    top: 20, left: 0, right: 0, bottom: 5),
+                child: Stack(
+                  children: <Widget>[
+                    ClipPath(
+                      clipper: OuterClippedPart(),
+                      child: Container(
+                        color: color.AppColor.gradientSecond,
+                        width: size.width,
+                        height: size.height,
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  CustomerInputBox(
-                      label: 'Title',
-                      inputHint: 'Title',
-                      controller: titleController),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  CustomerInputBox(
-                      label: 'Description',
-                      inputHint: 'Description',
-                      controller: descriptionController),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  InkWell(
-                    child: Container(
-                        margin: EdgeInsets.symmetric(vertical: 38),
-                        width: scrWidth * 0.5,
-                        height: 50,
-                        decoration: BoxDecoration(
-                            color: color.AppColor.gradientFirst,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Center(
-                          child: Text(
-                            'Add Details',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.white,
-                            ),
+                    ClipPath(
+                      clipper: InnerClippedPart(),
+                      child: Container(
+                        color: color.AppColor.gradientFirst,
+                        width: size.width,
+                        height: size.height,
+                      ),
+                    ),
+                    Positioned(
+                      right: size.width * 0.2,
+                      bottom: 0,
+                      child: Image.asset(
+                        'images/module.jpg',
+                        width: size.width * 0.7,
+                      ),
+                    ),
+                    Positioned(
+                      top: 50,
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 10,
                           ),
-                        )),
-                    onTap: () {;
-                      setState(() {
-                        title = titleController.text;
-                        description = descriptionController.text;
-                        addModuleDetails();
-                        clearText();
-                      });
-                    },
-                  ),
-                ]),
+                          IconButton(
+                            onPressed: () =>
+                                {Scaffold.of(context).openDrawer()},
+                            icon: Icon(Icons.menu,
+                                color: color.AppColor.homePageIcons, size: 30),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "Add Module Details",
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: color.AppColor.homePageTitle,
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(25, 120, 25, 10),
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      alignment: Alignment.topLeft,
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                child: DropdownButtonFormField<String>(
+                                  hint: Text('Please choose the detail type'),
+                                  value: selectedValue,
+                                  onChanged: (newValue) {
+                                    setState(() {
+                                      selectedValue = newValue!;
+                                    });
+                                  },
+                                  items: <String>[
+                                    'Please choose the detail type',
+                                    'Notices',
+                                    'Module Outline Details'
+                                  ].map((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                  decoration: InputDecoration(
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(27),
+                                      borderSide: BorderSide(
+                                        color: color.AppColor.gradientFirst,
+                                      ),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(27),
+                                      borderSide: BorderSide(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              Container(
+                                child: TextFormField(
+                                    controller: titleController,
+                                    autofocus: false,
+                                    decoration: ThemeHelper()
+                                        .textInputDecoration(
+                                            'Title', 'Enter title'),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please Enter Title';
+                                      }
+                                      return null;
+                                    }),
+                                decoration:
+                                    ThemeHelper().inputBoxDecorationShaddow(),
+                              ),
+                              SizedBox(height: 30.0),
+                              Container(
+                                child: TextFormField(
+                                  controller: descriptionController,
+                                  autofocus: false,
+                                  decoration: ThemeHelper().textInputDecoration(
+                                      "Description", "Enter description"),
+                                  keyboardType: TextInputType.emailAddress,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please description';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                decoration:
+                                    ThemeHelper().inputBoxDecorationShaddow(),
+                              ),
+                              SizedBox(height: 30.0),
+                              Container(
+                                decoration:
+                                    ThemeHelper().buttonBoxDecoration(context),
+                                child: ElevatedButton(
+                                  style: ThemeHelper().buttonStyle(),
+                                  child: Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        40, 10, 40, 10),
+                                    child: Text(
+                                      "Add Details",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      title = titleController.text;
+                                      description = descriptionController.text;
+                                      addModuleDetails();
+                                      clearText();
+                                      Fluttertoast.showToast(
+                                          msg: "Module Detail Added",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor:
+                                              Color.fromARGB(255, 61, 59, 59),
+                                          textColor: Colors.white,
+                                          fontSize: 16.0);
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
         ),
       ),
-    )
     );
   }
 }

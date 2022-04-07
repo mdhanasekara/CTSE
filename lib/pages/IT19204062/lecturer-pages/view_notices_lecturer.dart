@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:CTSE/colors.dart' as color;
 import '../../../common/theme_helper.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ViewNotices extends StatefulWidget {
   const ViewNotices({Key? key}) : super(key: key);
@@ -98,7 +99,7 @@ class _ViewNoticesState extends State<ViewNotices> {
                     SingleChildScrollView(
                       child: Container(
                         padding: const EdgeInsets.only(
-                            top: 50, left: 10, right: 10, bottom: 0),
+                            top: 40, left: 10, right: 10, bottom: 0),
                         child: Column(
                           children: [
                             Positioned(
@@ -129,7 +130,7 @@ class _ViewNoticesState extends State<ViewNotices> {
                               ),
                             ),
                             SizedBox(
-                              height: 35,
+                              height: 15,
                             ),
                             for (var i = 0; i < storedocs.length; i++) ...[
                               Positioned(
@@ -278,6 +279,7 @@ class _ViewNoticesState extends State<ViewNotices> {
                                                                               onPressed: () {
                                                                                 updateNotice(storedocs[i]['title'], storedocs[i]['description'], storedocs[i]['id'], title, description);
                                                                                 Navigator.of(context, rootNavigator: true).pop();
+                                                                                Fluttertoast.showToast(msg: "Notice updated", toastLength: Toast.LENGTH_SHORT, gravity: ToastGravity.BOTTOM, timeInSecForIosWeb: 1, backgroundColor: Color.fromARGB(255, 61, 59, 59), textColor: Colors.white, fontSize: 16.0);
                                                                               },
                                                                               child: const Text(
                                                                                 'Edit',
@@ -305,8 +307,60 @@ class _ViewNoticesState extends State<ViewNotices> {
                                               message: 'Delete',
                                               child: IconButton(
                                                 onPressed: () => {
-                                                  deleteNotice(
-                                                      storedocs[i]['id'])
+                                                  showDialog(
+                                                      context: context,
+                                                      builder: (context) {
+                                                        return Dialog(
+                                                            shape: RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            40)),
+                                                            elevation: 16,
+                                                            child: Container(
+                                                                height: 150.0,
+                                                                width: 300.0,
+                                                                child: Column(
+                                                                    children: [
+                                                                      SizedBox(
+                                                                          height:
+                                                                              20),
+                                                                      Center(
+                                                                        child:
+                                                                            Text(
+                                                                          "Delete Notice?",
+                                                                          style: TextStyle(
+                                                                              fontSize: 24,
+                                                                              color: Colors.black,
+                                                                              fontWeight: FontWeight.bold),
+                                                                        ),
+                                                                      ),
+                                                                      SizedBox(
+                                                                        height:
+                                                                            20,
+                                                                      ),
+                                                                      Container(
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.spaceAround,
+                                                                          children: [
+                                                                            ElevatedButton(
+                                                                              onPressed: () {
+                                                                                deleteNotice(storedocs[i]['id']);
+                                                                                Navigator.of(context, rootNavigator: true).pop();
+                                                                                Fluttertoast.showToast(msg: "Notice Deleted", toastLength: Toast.LENGTH_SHORT, gravity: ToastGravity.BOTTOM, timeInSecForIosWeb: 1, backgroundColor: Color.fromARGB(255, 61, 59, 59), textColor: Colors.white, fontSize: 16.0);
+                                                                              },
+                                                                              child: const Text(
+                                                                                'Delete',
+                                                                                style: const TextStyle(fontSize: 24.0),
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      )
+                                                                    ])));
+                                                      })
                                                 },
                                                 icon: Icon(Icons.delete,
                                                     color: Color.fromARGB(

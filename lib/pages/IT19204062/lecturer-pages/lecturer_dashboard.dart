@@ -75,7 +75,7 @@ class LecturerDashboard extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.only(top: 30, left: 10),
+                padding: const EdgeInsets.only(top: 20, left: 10),
                 child: Column(children: [
                   Row(
                     children: [
@@ -100,12 +100,12 @@ class LecturerDashboard extends StatelessWidget {
                 ]),
               ),
               Container(
-                padding: const EdgeInsets.only(top: 70, left: 15, right: 15),
+                padding: const EdgeInsets.only(top: 55, left: 15, right: 15),
                 child: Column(children: [
                   Expanded(
                       child: GridView.count(
                     crossAxisSpacing: 20,
-                    mainAxisSpacing: 20,
+                    mainAxisSpacing: 18,
                     crossAxisCount: 2,
                     children: [
                       for (var i = 0; i < topics.length; i++) ...[

@@ -2,9 +2,8 @@ import 'package:CTSE/pages/IT19204062/drawer-pages/lecturer_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:CTSE/colors.dart' as color;
-
 import '../../../common/theme_helper.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 class ViewModuleOutline extends StatefulWidget {
   const ViewModuleOutline({Key? key}) : super(key: key);
 
@@ -295,6 +294,7 @@ class _ViewModuleOutlineState extends State<ViewModuleOutline> {
                                                                                 title,
                                                                                 description);
                                                                             Navigator.of(context, rootNavigator: true).pop();
+                                                                            Fluttertoast.showToast(msg: "Module outline detail updated", toastLength: Toast.LENGTH_SHORT, gravity: ToastGravity.BOTTOM, timeInSecForIosWeb: 1, backgroundColor: Color.fromARGB(255, 61, 59, 59), textColor: Colors.white, fontSize: 16.0);
                                                                           },
                                                                           child:
                                                                               const Text(
@@ -324,7 +324,64 @@ class _ViewModuleOutlineState extends State<ViewModuleOutline> {
                                           message: 'Delete',
                                           child: IconButton(
                                             onPressed: () => {
-                                              deleteOutline(storedocs[i]['id'])
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return Dialog(
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        40)),
+                                                        elevation: 16,
+                                                        child: Container(
+                                                            height: 150.0,
+                                                            width: 300.0,
+                                                            child: Column(
+                                                                children: [
+                                                                  SizedBox(
+                                                                      height:
+                                                                          20),
+                                                                  Center(
+                                                                    child: Text(
+                                                                      "Delete Module Outline Detail?",
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              24,
+                                                                          color: Colors
+                                                                              .black,
+                                                                          fontWeight:
+                                                                              FontWeight.bold),
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 20,
+                                                                  ),
+                                                                  Container(
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceAround,
+                                                                      children: [
+                                                                        ElevatedButton(
+                                                                          onPressed:
+                                                                              () {
+                                                                            deleteOutline(storedocs[i]['id']);
+                                                                            Navigator.of(context, rootNavigator: true).pop();
+                                                                            Fluttertoast.showToast(msg: "Module outline detail deleted", toastLength: Toast.LENGTH_SHORT, gravity: ToastGravity.BOTTOM, timeInSecForIosWeb: 1, backgroundColor: Color.fromARGB(255, 61, 59, 59), textColor: Colors.white, fontSize: 16.0);
+                                                                          },
+                                                                          child:
+                                                                              const Text(
+                                                                            'Delete',
+                                                                            style:
+                                                                                const TextStyle(fontSize: 24.0),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  )
+                                                                ])));
+                                                  })
                                             },
                                             icon: Icon(Icons.delete,
                                                 color: Color.fromARGB(
